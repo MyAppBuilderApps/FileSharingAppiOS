@@ -1,0 +1,247 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1138\cocoasubrtf510
+{\fonttbl\f0\fswiss\fcharset0 ArialMT;\f1\fmodern\fcharset0 Courier;\f2\fnil\fcharset0 Menlo-Bold;
+\f3\fnil\fcharset0 Menlo-Regular;\f4\fnil\fcharset0 Menlo-BoldItalic;\f5\fnil\fcharset0 Menlo-Italic;
+}
+{\colortbl;\red255\green255\blue255;\red196\green26\blue22;\red170\green13\blue145;\red114\green44\blue253;
+\red217\green11\blue0;\red174\green0\blue240;\red133\green0\blue175;\red164\green8\blue0;}
+\margl1440\margr1440\vieww22340\viewh13580\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+
+\f0\fs28 \cf0 MyAppBuilder :\
+1) MyAppBuilder is easily create iPhone and Android Apps in Minutes or have MyAppBuilder.com create iphone or android apps for you. Save money and time in creating mobile application
+\f1\fs24 \
+
+\f0\fs28 \
+1) MyAppBuilder Files is a cloud based file sharing platform. \
+\
+2) MyAppBuilder.com contains copyrighted material, trademarks and other proprietary information, including, but not limited to, text, software, photos, video, graphics, music and sound, and the entire contents of MyAppBuilder.com are copyrighted as a collective work under the USA copyright laws.\
+\
+3)Hybrid Mobile for MABFiles Apps.\
+\
+### Technology\
+\
+### Client (iOS and Android)\
+\
+\
+MAB Files\
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+MyAppBuilder Files show user files in list that functions like a UITableView and also user can upload files via mobile.Tap tableview button user can share file,Delete file,Rename file,Export file(Download file,Email file)\
+\
+### 1) 
+\i\b App Controller
+\i0\b0   ##########\
+ 1) www folder\
+	i) index.html\
+	ii) js/index.js\
+	iii) js/controller.js\
+\
+## 2)
+\i\b Sign up
+\i0\b0  ##########\
+\
+Register controller inside the index.js\
+\
+\
+API For User Sign Up: 
+\f2\b \cf2 \CocoaLigature0 http://build.myappbuilder.com/api/users.json
+\f3\b0 \
+\pard\tx529\pardeftab529\pardirnatural
+
+\f0 \cf0 \CocoaLigature1 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+\cf0 Code:\
+\
+\pard\tx529\pardeftab529\pardirnatural
+
+\f3 \cf3 \CocoaLigature0 $http(\{method: "POST", url: 'http://build.myappbuilder.com/api/users.json', cache:false, params:\{"name":$scope.userDetail.fullname,"username":$scope.userDetail.username,"email":$scope.userDetail.email,"password":$scope.userDetail.password,"password_confirmation":$scope.userDetail.passwordConfirm\}\})\
+\
+.success(function(data,status,headers,config)\{\
+\})\
+.error(function(data,status,headers,config)\{\
+\})
+\f0 \cf0 \CocoaLigature1 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+\cf0 \
+\
+\
+## 3)
+\i\b Sign in
+\i0\b0  #############\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+
+\f3 \cf0 \CocoaLigature0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+
+\f0 \cf0 \CocoaLigature1 Login controller inside the index.js\
+\
+API For User Sign In: 
+\f2\b \cf2 \CocoaLigature0 http://build.myappbuilder.com/api/login.json\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+
+\f3\b0 \cf0 \
+\pard\tx529\pardeftab529\pardirnatural
+\cf0 Code:\
+\cf4 var formData = new FormData();\
+formData.append("login",$scope.userlogin.userid); // Username\
+formData.append("password",$scope.userlogin.password); // Password\
+$http.post('http://build.myappbuilder.com/api/login.json', formData,\{\
+                transformRequest: angular.identity,\
+                headers: \{'Content-Type': undefined\}\
+\})\
+.success(function(data,status,headers,config)\{\
+\})\
+.error(function(data,status,headers,config)\{\
+\})\cf3 \
+\cf0 \
+### 4)
+\f4\i\b Files Retrieve data from MAB server
+\f3\i0\b0  #####\
+\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+
+\f0 \cf0 \CocoaLigature1 API For User retrive files: 
+\f2\b \cf5 http://build.myappbuilder.com/api/files.json
+\f1\b0\fs24 \cf0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+
+\f3\fs28 \cf0 \CocoaLigature0 \
+\pard\tx529\pardeftab529\pardirnatural
+\cf0 \
+Count = 20 //
+\f5\i This integer refer how many data retrieve from myappbuilder.
+\f3\i0 \
+\
+Maximum count = 200\
+Minimum count = 20 \
+\
+code:\
+\cf4 $http(\{method:'GET', url:'http://build.myappbuilder.com/api/files.json', cache:false, params:\{'api_key':loginStorage.api_key,'
+\f0 \CocoaLigature1 count
+\f3 \CocoaLigature0 ':'','page':'','folder_id':''\}\})\
+.success(function(data, status, headers, config)\{\
+\})\
+.error(function(data,status,headers,config)\{\
+\})\
+\
+\cf0 \
+**** 5)
+\f2\b File Upload to MAB 
+\f3\b0 *****************\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+
+\f0 \cf0 \CocoaLigature1 API For User Upload Files: 
+\f2\b \cf5 \CocoaLigature0 http://build.myappbuilder.com/api/files/new.json\CocoaLigature1 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+
+\f3\b0 \cf0 \CocoaLigature0 \
+code:\
+\pard\tx529\pardeftab529\pardirnatural
+\cf6 var formData = new FormData();\
+formData.append("api_key",loginStorage.api_key);\
+formData.append("file", $('#newrootfiles').get(0).files[0]);\
+\
+$http.post('http://build.myappbuilder.com/api/files/new.json',formData,\{\
+     transformRequest: angular.identity,\
+     headers: \{'Content-Type': undefined\}\
+\})\
+.success(function(data, status, headers, config)\{\
+\})\
+.error(function(data,status,headers,config)\{\
+\})\cf3 \
+\cf0 \
+****** 
+\f2\b Folder Creation
+\f3\b0  ******************\
+\
+
+\f0 API For User Folder Creation: 
+\f2\b \cf5 http://build.myappbuilder.com/api/folders.json\
+\
+
+\f0\b0 \cf0 code:\
+\cf7 var formData = new FormData();\
+formData.append("api_key",loginStorage.api_key);\
+formData.append("name",$scope.folder.name);\cf0 \
+
+\f3 \cf7 $http.post('http://build.myappbuilder.com/api/folders.json', formData,\{\
+     transformRequest: angular.identity,\
+     headers: \{'Content-Type': undefined\}\
+\})\
+ .success(function(data,status,headers,config)\{\
+\})\
+.error(function(data,status,headers,config)\{\
+\})\cf0 \
+\
+****** 
+\f2\b Deleting File
+\f3\b0  ********************\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+
+\f0 \cf0 \CocoaLigature1 API For User Upload Files: 
+\f2\b \cf8 \CocoaLigature0 http://build.myappbuilder.com/api/folders/destroy.json\cf5 \CocoaLigature1 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+
+\f3\b0 \cf0 \CocoaLigature0 \
+\pard\tx529\pardeftab529\pardirnatural
+\cf4 item.id // \cf0 Folder id or file id\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+\cf0 code:\
+\pard\tx529\pardeftab529\pardirnatural
+\cf4 $http(\{method:"DELETE", url:'http://build.myappbuilder.com/api/folders/destroy.json', cache:false, params:\{'api_key':loginStorage.api_key, 'id':item.id\}\})\
+.success(function(data,status,headers,config)\{\
+\})\
+.error(function(data,status,headers,config)\{\
+\})\cf0 \
+\
+\
+******* 
+\f2\b MAB Rename file
+\f3\b0  ***************\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+
+\f0 \cf0 \CocoaLigature1 API For User Rename Files: 
+\f2\b \cf8 \CocoaLigature0 http://build.myappbuilder.com/api/files/rename.json
+\f3\b0 \cf0 \
+\pard\tx529\pardeftab529\pardirnatural
+\cf2 \
+\pard\tx529\pardeftab529\pardirnatural
+\cf4 folder.editId // \cf0 Folder id or file id\
+\cf4 folder.editname // \cf0 Folder name or file name\
+\pard\tx529\pardeftab529\pardirnatural
+\cf2 \
+\pard\tx529\pardeftab529\pardirnatural
+\cf0 code:\cf2 \
+\cf4 $http(\{method:'PUT', url:'http://build.myappbuilder.com/api/files/rename.json', cache:false, params:\{'api_key':loginStorage.api_key, 'id':$scope.folder.editId, 'name':$scope.folder.editname\}\})\
+.success(function(data,status,headers,config)\{\
+\})\
+.error(function(data,status,headers,config)\{\
+\})\
+\pard\tx529\pardeftab529\pardirnatural
+\cf2 \
+\pard\tx529\pardeftab529\pardirnatural
+\cf0 ******* 
+\f2\b MAB share file
+\f3\b0  ***************\
+\pard\tx529\pardeftab529\pardirnatural
+\cf2 \
+\pard\tx529\pardeftab529\pardirnatural
+\cf0 i) FaceBook API\
+ii) Twitter API\
+iii) Email Plugin\cf2 \
+\cf0 \
+#### 
+\f4\i\b 6)FrameWork
+\f3\i0\b0  ###########\
+\
+\
+1)IonicFramework\
+2)Phonegap\
+3)Cordova\
+4)MessageUI\
+\
+}
